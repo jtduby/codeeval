@@ -6,6 +6,10 @@
     Brute force, could use some memoization and short-circuiting. But, to
     paraphrase a wise professor "First things first. Get the damn thing
     working before worrying about how to make it work better".
+
+    Assumptions:
+        --> Number of items >= number of customers as a given product may only
+            be offered to one customer.
 """
 import sys
 import re
