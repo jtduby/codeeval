@@ -8,8 +8,6 @@
     working before worrying about how to make it work better".
 
     Assumptions:
-        --> Number of items >= number of customers as a given product may only
-            be offered to one customer.
 
     Version History:
         0.1:    Brute-force
@@ -22,7 +20,7 @@ def consonants(s):
     """Takes a string s, returns the integer count of consonants in the
     string. Compiling the pattern so I can use a flag.
     """
-    r = re.compile('[^BCDFGHJKLMNPQRSTVWXYZ]', re.IGNORECASE)
+    r = re.compile('[^BCDFGHJKLMNPQRSTVWXZ]', re.IGNORECASE)
     count = len(re.sub(r, '', s))
     return count
 
@@ -58,9 +56,13 @@ def find_max_scores(names, item_perm, ss_dict):
     max_ss = 0.0
     for p in item_perm:
         temp_ss = 0.0
-        for n in names:
-            for i in p:
-                temp_ss += ss_dict[n][i]
+        # for n in names:
+        #     for i in p:
+        #         temp_ss += ss_dict[n][i]
+        for i in range(0, len(names)):
+            name = names[i]
+            item = p[i]
+            temp_ss += ss_dict[name][item]
         if temp_ss > max_ss:
             max_ss = temp_ss
     return max_ss
@@ -121,7 +123,8 @@ def is_even(s):
 def letters(s):
     """Takes a string s, returns the integer count of letters in the string.
     """
-    count = len(re.sub('[^A-Za-z]', '', s))
+    # count = len(re.sub('[^A-Za-z]', '', s))
+    count = len(re.sub('[^A-Za-z0-9]', '', s))
     return count
 
 def odd_score(name, item):
@@ -136,7 +139,7 @@ def parse_test_line(s):
     """Takes the string line from the test file. Returns a list of names and a
     a list of items. Test string is assumed to be formatted correctly.
     """
-    names, items = s.split(";")
+    names, items = s.strip().split(";")
     name_list = names.split(",")
     item_list = items.split(",")
     return name_list, item_list
@@ -154,6 +157,8 @@ def run_test(infile):
     for line in infile:
         names, items = parse_test_line(line)
         ss_dict = gen_ss_dict(names, items)
+        print ss_dict
+        print
         item_perms = gen_permutations(names, items)
         scores.append(find_max_scores(names, item_perms, ss_dict))
     return scores
@@ -161,7 +166,7 @@ def run_test(infile):
 def vowels(s):
     """Takes the string s. Return the integer count of vowels in the string.
     """
-    count = len(re.sub('[^AEIOUaeiou]', '', s))
+    count = len(re.sub('[^AEIOUYaeiouy]', '', s))
     return count
 
 if  __name__ == '__main__': 
