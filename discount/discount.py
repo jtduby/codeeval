@@ -24,14 +24,14 @@ def consonants(s):
     count = len(re.sub(r, '', s))
     return count
 
-def common_factor_score(name, item):
+def common_factor_score(name, item, ss):
     """
     """
     n = letters(name)
     i = letters(item)
     if (has_common_factors(n, i)):
-        return (n * 1.5)
-    return 0.0
+        return (ss * 1.5)
+    return ss
  
 def even_score(name, item):
     """
@@ -96,10 +96,11 @@ def gen_ss_dict(names, items):
 
 def gen_ss(name, item):
     """Takes the name and item as strings. Returns the maximum SS."""
-    cf_score = common_factor_score(name, item)
     e_score = even_score(name, item)
     o_score = odd_score(name, item)
-    return max(cf_score, e_score, o_score)
+    eo_score = max(e_score, o_score)
+    ss = common_factor_score(name, item, eo_score)
+    return ss
 
 def has_common_factors(x, y):
     """Takes two integers, x and y. Returns True if they have common factors,
@@ -124,7 +125,7 @@ def letters(s):
     """Takes a string s, returns the integer count of letters in the string.
     """
     # count = len(re.sub('[^A-Za-z]', '', s))
-    count = len(re.sub('[^A-Za-z0-9]', '', s))
+    count = len(re.sub('[^A-Za-z]', '', s))
     return count
 
 def odd_score(name, item):
@@ -132,7 +133,7 @@ def odd_score(name, item):
     """
     if (not is_even(item)):
         c = consonants(name)
-        return (c * 1.5)
+        return c
     return 0.0
 
 def parse_test_line(s):
@@ -157,8 +158,6 @@ def run_test(infile):
     for line in infile:
         names, items = parse_test_line(line)
         ss_dict = gen_ss_dict(names, items)
-        print ss_dict
-        print
         item_perms = gen_permutations(names, items)
         scores.append(find_max_scores(names, item_perms, ss_dict))
     return scores
