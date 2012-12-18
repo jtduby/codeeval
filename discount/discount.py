@@ -57,6 +57,7 @@ def find_max_scores(names, item_perm, ss_dict):
     lowly brute-firce solution.
     """
     max_ss = 0.0
+    max_p = []
     for p in item_perm:
         temp_ss = 0.0
         for i in range(0, len(names)):
@@ -65,6 +66,10 @@ def find_max_scores(names, item_perm, ss_dict):
             temp_ss += ss_dict[name][item]
         if temp_ss > max_ss:
             max_ss = temp_ss
+            max_p = p
+    for j in range(0, len(names)):
+        print(names[j] + "/" + max_p[j])
+    print
     return max_ss
 
 def find_max_scores2(items, name_perm, ss_dict):
