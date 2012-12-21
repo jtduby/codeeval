@@ -2,8 +2,6 @@
 
 """
     Bit Positions Solution: v0.2
-   
-    ** This code is broken **
  
     Version history:
         0.1: This could be done a lot more elegantly.
@@ -15,8 +13,8 @@ def compare(n, x, y):
     """Take integers n, x, y. Shifts n x and y bits to the right. If the
     lowest order bit if equal, returns true. Otherwise returns false.
     """
-    n1 = n >> x
-    n2 = n >> y
+    n1 = n >> (x - 1)
+    n2 = n >> (y - 1)
     if (n1 & 0b1) == (n2 & 0b1):
         return True
     else: return False
