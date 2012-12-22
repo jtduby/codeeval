@@ -1,17 +1,20 @@
 #!/usr/bin/env python
 
 """
-    Sum of Primes Solution: v0.1
-    
+    Sum of Primes Solution: v0.2
+   
+    **Still working on v0.2**
+ 
     Version History:
         0.1: Brute force.
-
+        0.2: Implemented memoization and use of computed primes for testing
+             the current number.
 """
 
 import sys
 import math
 
-def prime(n, primes=None):
+def prime(n, primes=[]):
     s = int(math.ceil(math.sqrt(n)))
     if primes:
         pass 
