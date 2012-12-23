@@ -2,3 +2,4 @@ sum_of_primes: new version
 reverse_words
 multiples_of_a_number
 lowercase
+sum_of_digits
