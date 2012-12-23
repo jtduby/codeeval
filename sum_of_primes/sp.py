@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
 """
-    Sum of Primes Solution: v0.2
+    Sum of Primes Solution: v0.3
    
     Version History:
         0.1: Brute force.
         0.2: Implemented memoization and use of computed primes for testing
              the current number.
-        0.3: Modularization of code. **WIP**
+        0.3: Modularization of code. 
 """
 
 import sys
@@ -26,16 +26,18 @@ def memo_prime(n, primes):
         if (n % p == 0): return False
     return True
 
-def n_primes(n):
-
-if __name__ == '__main__':
+def sum_n_primes(n):
     primes = []
     i = 2
     sum = 0
-    while len(primes) < 1000:
+    while len(primes) < n:
         if memo_prime(i, primes):
             primes.append(i)
             sum += i
         i += 1
+    return sum
+
+if __name__ == '__main__':
+    sum = sum_n_primes(1000)
     print(sum)
     sys.exit(0)
