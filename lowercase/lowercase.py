@@ -7,11 +7,11 @@
     lower method. After that, I'll make it more interesting.
 
     Version History:
-        v0.1:   
+        v0.1: Yawn
 """
 
 import sys
-
+    
 if __name__ == '__main__':
     exit_code = 0
     try: 
