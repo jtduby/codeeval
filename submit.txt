@@ -5,3 +5,4 @@ lowercase
 sum_of_digits
 fibonacci
 sum_of_integers
+odd_numbers
