@@ -7,3 +7,4 @@ fibonacci
 sum_of_integers
 odd_numbers
 unique_elements
+stack

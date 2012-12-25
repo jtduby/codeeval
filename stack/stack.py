@@ -13,25 +13,26 @@ import sys
 class Stack(object):
     def __init__(self):
         self.stack = []
-    def empty(self):
-        if len(self.stack) == 0:
-            return True
-        else:
-            return False
+    def __len__(self):
+        return(len(self.stack))
     def push(self, obj):
         self.stack.append(obj)
     def pop(self):
-        if (not self.empty()):
-            return self.pop()
-        else: 
-            return None
+        """Raises StackEmpty instead of returning None so that None can be
+        pushed onto the stack.
+        """
+        try:
+            return self.stack.pop()
+        except IndexError:
+            raise StackEmpty
+
+class StackEmpty(BaseException):
+    """Inheriting from BaseException because this isn't really an error."""
+    pass
         
 class InputFileIncorrect(Exception):
     def __init__(self, msg=''):
         self.message = msg
-
-class StackEmpty(BaseException):
-    pass
 
 def parse_line(line):
     if len(line.strip()) > 0:
@@ -44,6 +45,22 @@ def batch_push(stack, items):
     for i in items:
         stack.push(i)
 
+def alt_print(stack):
+    alt = True
+    out = ''
+    while True:
+        try:
+            n = stack.pop()
+            if alt:
+                out = out + n
+                alt = False
+            else:
+                out = out + ' '
+                alt = True
+        except StackEmpty:
+            print(out.strip())
+            break
+ 
 if __name__ == '__main__':
     exit_code = 0
     try: 
@@ -52,11 +69,7 @@ if __name__ == '__main__':
         for line in infile:
             items = parse_line(line)
             batch_push(s, items)
-            alt = False
-            
-            
-                
-                        
+            alt_print(s)
     except IOError:
         exit_code = "Unable to open file: " + sys.argv[1]
     except IndexError:
