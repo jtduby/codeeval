@@ -11,10 +11,10 @@ if __name__ == '__main__':
     try: 
         infile = open(sys.argv[1], 'r')
         for line in infile:
+            d = {}
             seq = line.strip().split(' ')
-            seq.reverse()
-            i = len(seq) - 1
-            
+            for i in range(0, len(seq)):
+               pass 
     except IOError:
         exit_code = "Unable to open file: " + sys.argv[1]
     except IndexError:
