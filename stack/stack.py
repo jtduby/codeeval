@@ -30,16 +30,9 @@ class StackEmpty(BaseException):
     """Inheriting from BaseException because this isn't really an error."""
     pass
         
-class InputFileIncorrect(Exception):
-    def __init__(self, msg=''):
-        self.message = msg
-
 def parse_line(line):
-    if len(line.strip()) > 0:
-        line_list = line.strip().split(' ')
-        return line_list
-    else:
-        raise InputFileIncorrect        
+    line_list = line.strip().split(' ')
+    return line_list
 
 def batch_push(stack, items):
     for i in items:
@@ -74,8 +67,6 @@ if __name__ == '__main__':
         exit_code = "Unable to open file: " + sys.argv[1]
     except IndexError:
         exit_code = "No arguments given."
-    except InputFileIncorrect:
-        exit_code = "Input file not properly formatted."
     finally:
         try:
             infile.close()

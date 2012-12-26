@@ -1,9 +1,0 @@
-reverse_words **fix me**
-multiples_of_a_number
-lowercase
-sum_of_digits
-fibonacci
-sum_of_integers
-odd_numbers
-unique_elements
-stack
