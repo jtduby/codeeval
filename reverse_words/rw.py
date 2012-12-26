@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 
 """
-    Reverse Words Solution: v0.2
+    Reverse Words Solution: v0.3
     
     Version History:
         0.1: First try
         0.2: Need to learn to read better. Now ignoring blank lines per the
              specs.
+        0.3: It would help if I was actually reversing the string.
 """
 
 import sys
@@ -14,9 +15,11 @@ import sys
 def reverse_str(s):
     """
     """
+    s_list = s.strip().split(' ')
+    s_list.reverse()
     rs = ''
-    for w in s.strip().split(' '):
-        rs = rs + ' ' + w
+    for word in s_list:
+        rs = rs + ' ' + word
     return rs.strip()
 
 if __name__ == '__main__':
