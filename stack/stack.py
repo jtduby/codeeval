@@ -1,11 +1,16 @@
 #!/usr/bin/env python
 
 """
-    Stack Implementation Solution: v0.1
+    Stack Implementation Solution: v0.2
       
     The specs say we'll be handling integers. There's no need to make this
     stack implementation that narrow. Making it more generic and robust. It
     will handle any object.
+
+    Version History:
+        v0.1: Works according to spec.
+        v0.2: CodeEval passes a blank line in input. They imply that there
+              will be no blanks and do not state how to handle them. Fixed.
 """
 
 import sys
