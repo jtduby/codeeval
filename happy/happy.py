@@ -1,17 +1,22 @@
 #!/usr/bin/env python
 
 """
-    Happy Numbers Solution: v0.1
+    Happy Numbers Solution: v0.2
+    
+    Version History:
+        0.1: Completed
+        0.2: Won't work if two or more places share the same number, i.e.,
+             12234. Fixed.
 """
 
 import sys
 
 def find_digits(n):
-    digits = set()
+    digits = [] 
     place = 10
     while n > 0:
         rem = n % place
-        digits.add(rem/(place/10))
+        digits.append(rem/(place/10))
         n = n - rem
         place = place * 10
     return digits
