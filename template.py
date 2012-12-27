@@ -15,8 +15,6 @@ if __name__ == '__main__':
         exit_code = "Unable to open file: " + sys.argv[1]
     except IndexError:
         exit_code = "No arguments given."
-    except:
-        exit_code = "Unspecified error."
     finally:
         try:
             infile.close()
