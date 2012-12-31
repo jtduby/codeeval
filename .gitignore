@@ -1,3 +1,4 @@
 *.py[cod]
 *.txt
 .*.swp
+add_license.py
