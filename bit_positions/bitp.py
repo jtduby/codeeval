@@ -3,14 +3,15 @@
 """
     Bit Positions Solution: v0.4
 
-        Given a file whose lines are formatted as:
+        Given, as an argument, the path to a file whose lines are formatted
+        as:
         <Integer n>,<Integer p1>,<Integer p2>
         e.g.
         82,2,3
 
         If bit positions p1 and p2 in n are the same, true is printed to
         stdout. If not, false is printed. Bit posititions are from low order
-        to high, starting with 1.
+        to high, starting with 1. Both p1 and p2 are assumed to be positive.
          
     Version history:
         0.1: This could be done a lot more elegantly.

@@ -2,6 +2,9 @@
 
 """
     Fibonacci Solution: v0.4
+
+    Takes, as an argument, the path to a file with a positive integer n on
+    each line. Prints the nth number in the Fibonacci sequence to stdout. 
     
     Version History:
         0.2: Couldn't bring myself to calculate the fib each time. Created an
