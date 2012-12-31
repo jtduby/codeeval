@@ -1,1 +1,3 @@
-rightmost_char.pyc
+*.py[cod]
+*.txt
+.*.swp

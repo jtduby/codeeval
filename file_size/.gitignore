@@ -1,1 +1,3 @@
-fsize.pyc
+*.py[cod]
+*.txt
+.*.swp

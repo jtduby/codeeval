@@ -1,4 +1,3 @@
-fizzbuzz.pyc
-fizzbuzz.py.swp
-testfile
-debugtest
+*.py[cod]
+*.txt
+.*.swp

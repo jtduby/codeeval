@@ -1,1 +1,3 @@
-setint.pyc
+*.py[cod]
+*.txt
+.*.swp
