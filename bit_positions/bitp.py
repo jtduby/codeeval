@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 
 """
-    Bit Positions Solution: v0.2
+    Bit Positions Solution: v0.3
  
     Version history:
         0.1: This could be done a lot more elegantly.
-        0.2: Jetisoned the mask silliness. 
+        0.2: Jetisoned the mask silliness.
+        0.3: Did some refactoring. 
 """
 import sys
 
@@ -27,16 +28,13 @@ def parse_line(line):
     n, x, y = line.strip().split(',')
     return int(n), int(x), int(y)
 
-def run_test():
-    infile = open(sys.argv[1], 'r')
-    for line in infile:
-        n, x, y = parse_line(line)
-        c = compare(n, x, y)
-        pretty_print(c)
-    infile.close()
-
 if __name__ == '__main__': 
-    run_test()
+    try:
+        infile = open(sys.argv[1], 'r')
+        for line in infile:
+            n, x, y = parse_line(line)
+            c = compare(n, x, y)
+            pretty_print(c)
+    finally:
+        infile.close()
     sys.exit(0)
-
-sys.exit(1)
