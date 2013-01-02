@@ -1,11 +1,18 @@
 #!/usr/bin/env python
 
 """
-    Odd Numbers Solution: v0.1
+    Odd Numbers Solution: v0.2
 
-    =================================
-    Copyright 2012, Jamie Thomas Duby
-    =================================
+    Prints all odd numbers from 1 to 100. Numbers are printed, one per line,
+    to sdtout.
+
+    Version History:
+        0.2: Improved documentation.
+
+
+    =======================================
+    Copyright 2012,2013   Jamie Thomas Duby
+    =======================================
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

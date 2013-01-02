@@ -1,23 +1,36 @@
 #!/usr/bin/env python
 
 """
-    Bit Positions Solution: v0.4
+    Bit Positions Solution: v0.5
 
-        Given, as an argument, the path to a file whose lines are formatted
-        as:
-        <Integer n>,<Integer p1>,<Integer p2>
-        e.g.
-        82,2,3
+    Taken from: http://www.codeeval.com/open_challenges/19/
 
-        If bit positions p1 and p2 in n are the same, true is printed to
-        stdout. If not, false is printed. Bit posititions are from low order
-        to high, starting with 1. Both p1 and p2 are assumed to be positive.
+    Description:
+
+        Given a number n and two integers p1,p2 determine if the bits in 
+        position p1 and p2 are the same or not. Positions p1,p2 and 1 based.
+
+    Input sample:
+
+        The first argument will be a text file containing a comma separated
+        list of 3 integers, one list per line. e.g.
+
+            86,2,3
+            125,1,2
+
+    Output sample:
+
+        Print to stdout, 'true'(lowercase) if the bits are the same, else 
+        'false'(lowercase). e.g.
+
+            true
+            false
          
     Version history:
         0.1: This could be done a lot more elegantly.
         0.2: Jetisoned the mask silliness.
         0.3: Did some refactoring.
-        0.4: Code cleaning and documentation fixing. 
+        0.4/0.5: Code cleaning and documentation fixing. 
 
     ================================
     Copyright 2012, Jamie Thomas Duby
@@ -54,10 +67,16 @@ def compare(n, p1, p2):
     else: return False
 
 def pretty_print(b):
+    """Reformats boolean values to a string of all lower case characters e.g.
+    True = 'true'. This is to meet codeval specificaions.
+    """
     if b == True: print("true")
     else: print("false")    
 
 def parse_line(line):
+    """Takes a line formatted as three comma seperated integers. Returns three
+    integers.
+    """
     n, p1, p2 = line.strip().split(',')
     return int(n), int(p1), int(p2)
 

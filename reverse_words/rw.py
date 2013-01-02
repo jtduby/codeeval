@@ -1,17 +1,25 @@
 #!/usr/bin/env python
 
 """
-    Reverse Words Solution: v0.3
+    Reverse Words Solution: v0.4
+   
+    Reverses the order of words in a string. e.g.
+    Hello World --> World Hello
     
+    Takes, as an argument, the path to a file with a string on each line.
+    Empty lines are ignored.
+ 
     Version History:
         0.1: First try
         0.2: Need to learn to read better. Now ignoring blank lines per the
              specs.
         0.3: It would help if I was actually reversing the string.
+        0.4: Cleaned code and fixed documentation.
 
-    =================================
-    Copyright 2012, Jamie Thomas Duby
-    =================================
+
+    ======================================
+    Copyright 2012,2013  Jamie Thomas Duby
+    ======================================
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -29,7 +37,9 @@
 import sys
 
 def reverse_str(s):
-    """
+    """Reverses the words in a sting and returns the new string to the
+    caller. A word in this context is defined as any space seperated
+    sequence of non-whitespace characters.
     """
     s_list = s.strip().split(' ')
     s_list.reverse()
@@ -45,10 +55,6 @@ if __name__ == '__main__':
             r = reverse_str(line)
             if (len(r) > 0):
                 print(r)
-    except IOError:
-        sys.exit("Unable to open file: sys.argv[1]")
-    except IndexError:
-        sys.exit("No arguments given.")
-    except:
-        sys.exit(1)
-    sys.exit(0)
+    finally:
+        infile.close()
+    sys.exit(1)

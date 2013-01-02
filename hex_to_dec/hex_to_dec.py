@@ -3,6 +3,14 @@
 """
     Hex to Decimal Solution: v0.4
 
+    Takes, as an argument, the path to a file formatted as a hexidecimal
+    number on each line. All hex numbers are to be formatted as just the
+    number, without any prefix. 
+    1a2b3c not 0x1a2b3c
+
+    Prints the base 10 representation of each hexidecimal number to stdout.
+
+
     Yes, I know that Python will convert between hex and dec. But using that
     ability kind of takes the fun out of the challenge, doesn't it?
 

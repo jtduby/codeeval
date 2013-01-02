@@ -47,6 +47,7 @@ class Fib(object):
             f = self._fibs[n]
         return f
     def _find_fib(self, n):
+        """Computes the fibonacci sequence up to, and including fib(n)."""
         for i in range(self._last_computed_fib()+1, n+1):
             self._fibs[i] = self._fibs[i-1] + self._fibs[i-2]
     def _last_computed_fib(self):

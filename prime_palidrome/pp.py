@@ -3,6 +3,9 @@
 """
     Prime Palidrome Solution: v0.1
 
+    Finds the largest prime palindrome under 1000 and prints it to stdout.
+
+
     =================================
     Copyright 2012, Jamie Thomas Duby
     =================================
@@ -24,6 +27,7 @@ import sys
 import math
 
 def prime(n):
+    """Checks if n is prime. Returns True if it is, False if not."""
     s = int(math.ceil(math.sqrt(n)))
     if n > 3:
         for i in range(2, s+1):
@@ -32,6 +36,8 @@ def prime(n):
     return True
 
 def palindrome(s, b=0, e=-1):
+    """Recurrsively determines if the string s is a palindrome. Returns
+    a boolean"""
     size = len(s)
     if b < len(s):
         if (s[b] == s[e]):

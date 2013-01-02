@@ -1,7 +1,13 @@
 #!/usr/bin/env python
 
 """
-    Modulus Solution: v0.1
+    Modulus Solution: v0.2
+
+    Takes, as an argument, the path to a file where each line is a two 
+    integers, n and m, seperated by a comma. n mod m is printed to stdout.
+
+    Version History:
+        0.2: Code cleaning, refactoring, fixing documentation.
 
     =================================
     Copyright 2012, Jamie Thomas Duby
@@ -23,6 +29,7 @@
 import sys
 
 def mod(n,m):
+    """Takes integers n and m. Returns n modulo m to the caller."""
     q = n/m
     r = n-(q*m)
     return r

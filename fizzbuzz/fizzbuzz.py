@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-    Fizzbuzz Solution: v0.3
+    Fizzbuzz Solution: v0.4
 
     Takes, as an argument, the path to a file whose lines are formatted:
     <integer a> <integer b> <integer n>
@@ -22,12 +22,12 @@
     
     Version History:
         0.2: Code cleaning.
-        0.3: Refactoring, cleaning, fixing documentation.
+        0.3/0.4: Refactoring, cleaning, fixing documentation.
 
 
-    =================================
-    Copyright 2012, Jamie Thomas Duby
-    =================================
+    =======================================
+    Copyright 2012, 2013  Jamie Thomas Duby
+    =======================================
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -44,6 +44,9 @@
 import sys
 
 def fizzbuzz(a, b, n):
+    """Takes integers a, b, and n. Returns a string respective to the fizzbuzz
+    specification listed in the header.
+    """
     if n % (a*b) == 0:
         return 'FB'
     elif n%a == 0:
@@ -53,14 +56,17 @@ def fizzbuzz(a, b, n):
     else: return str(n)
 
 def parse_test(t):
-    tlist = test.split()
-    a = int(tlist[0].strip())
-    b = int(tlist[1].strip())
-    n = int(tlist[2].strip())
-    return (a, b, n)
+    """Takes a string of three space seperated integers. Returns the the three
+    integers.
+    """
+    a, b, n = t.split(' ')
+    return int(a), int(b), int(n) 
 
-def run_test(t):
-    a, b, n = t
+def run_test(a, b, n):
+    """Takes integers a, b, and n. Returns a string containing the space
+    seperated fizzbuzz sequence for all i from 1 through n respective to a
+    and b.
+    """
     tmp_str = ''
     for i in range(1, n+1):
         fb = fizzbuzz(a, b, i)
@@ -72,8 +78,8 @@ if __name__ == '__main__':
         test_cases = open(sys.argv[1], 'r')
     
         for test in test_cases:
-            t = parse_test(test)
-            print run_test(t)
+            a, b, n = parse_test(test)
+            print run_test(a, b, n)
     finally:
         test_cases.close()
     sys.exit(0)

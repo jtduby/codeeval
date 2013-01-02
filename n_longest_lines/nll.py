@@ -3,7 +3,22 @@
 """
     N Longest Lines Solution: v0.2
 
-    Ugly, brute-force solution. Both time and space inefficient.
+    Takes, as an argument, the path to a file formatted as:
+        <integer N>
+        <str 1>
+        <str ...>
+    e.g.
+        2
+        Hello World
+        Hi
+        Foo
+        Hello, World
+
+    Prints, to stdout, the N longest lines, in order of decreasing length. In 
+    the above example, the output would be:
+        Hello, World
+        Hello World
+
 
     Version History:
         0.1 -- Brute-force proof of concept.
@@ -27,29 +42,30 @@
 """
 import sys
 
-def run_test(t):
-    """Stripped strings are saved in line list with their respective lengths
-    in a tuple formatted (len(string), string). This is done so that the 
-    list of strings can be sorted and reversed by length.
+def sort_lines(t):
+    """Takes a file. Returns a list of the lines of the file, as strings, in
+    order by descending length. Equal length lines should, but are not 
+    guaranteed to be in the order they were encountered.
     """
     line_list = []
-    for line in test_cases:
-        tmp = line.strip()
-        if len(tmp) > 0:
-            line_list.append((len(tmp), tmp))
-    line_list.sort()
-    line_list.reverse()
+    for line in t:
+        line = line.strip()
+        if len(line) > 0:
+            line_list.append(line)
+    line_list.sort(lambda a,b: len(b) - len(a))
     return line_list
 
 def print_nll(n, nll):
+    """Prints the first n lines from the line list. Assumes that n < len(nll).
+    """
     for i in range(0, n):
-        print nll[i][1]
+        print nll[i]
 
 if __name__ == '__main__': 
     test_cases = open(sys.argv[1], 'r')
 
     n = int(test_cases.next())
-    nll = run_test(test_cases)
+    nll = sort_lines(test_cases)
     print_nll(n, nll)
 
     test_cases.close()

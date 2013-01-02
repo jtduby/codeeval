@@ -3,8 +3,8 @@
 """
     File Size Solution: v0.2
 
-    Takes, and an argument, the path to a file. Prints the size of the file,
-    in bytes, to stout.
+    Takes, and an argument, the path to a file. Prints the size of the file
+    in bytes to stout.
 
     Specifications did not state how to handle a non-existent file. I elected
     to do nothing and just exit.
