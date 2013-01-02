@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-    Stack Implementation Solution: v0.2
+    Stack Implementation Solution: v0.3
       
     The specs say we'll be handling integers. There's no need to make this
     stack implementation that narrow. Making it more generic and robust. It
@@ -11,10 +11,10 @@
         v0.1: Works according to spec.
         v0.2: CodeEval passes a blank line in input. They imply that there
               will be no blanks and do not state how to handle them. Fixed.
-
-    =================================
-    Copyright 2012, Jamie Thomas Duby
-    =================================
+        v0.3: Performed some code cleaning.
+    ========================================
+    Copyright 2012, 2013,  Jamie Thomas Duby
+    ========================================
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -33,17 +33,17 @@ import sys
 
 class Stack(object):
     def __init__(self):
-        self.stack = []
+        self._stack = []
     def __len__(self):
-        return(len(self.stack))
+        return(len(self._stack))
     def push(self, obj):
-        self.stack.append(obj)
+        self._stack.append(obj)
     def pop(self):
         """Raises StackEmpty instead of returning None so that None can be
         pushed onto the stack.
         """
         try:
-            return self.stack.pop()
+            return self._stack.pop()
         except IndexError:
             raise StackEmpty
 
