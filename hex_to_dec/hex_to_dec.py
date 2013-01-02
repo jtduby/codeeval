@@ -1,16 +1,20 @@
 #!/usr/bin/env python
 
 """
-    Hex to Decimal Solution: v0.2
+    Hex to Decimal Solution: v0.4
 
     Yes, I know that Python will convert between hex and dec. But using that
     ability kind of takes the fun out of the challenge, doesn't it?
 
-    CodeEval breaks spec and passes upper case characters. 
 
-    =================================
-    Copyright 2012, Jamie Thomas Duby
-    =================================
+    Version History:
+        0.2: CodeEval breaks spec and passes upper case characters. 
+        0.3/0.4: Cleaning code, refactoring, fixing documentation.
+
+
+    ======================================
+    Copyright 2012,2013  Jamie Thomas Duby
+    ======================================
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -28,12 +32,19 @@
 import sys
 
 def str_to_list(in_str):
+    """Takes a string, returns a list where each character in the string is
+    an item in the list. All chars are converted to lower case.
+    """
     s_list = []
     for c in in_str:
         s_list.append(c.lower())
     return s_list
 
 def gen_hex_dict():
+    """Returns a dictionary where the keys are string equivalents of 
+    hexidecimal digits. Each key defines the an integer representation of the
+    key's base 10 value. e.g. 'a': 10
+    """
     hex_dict = {}
     for i, h in enumerate(['0','1','2','3','4','5','6','7','8','9','a','b',
                            'c','d','e','f']):
@@ -41,12 +52,19 @@ def gen_hex_dict():
     return hex_dict
 
 def hex_list_to_dec(hex_list):
+    """Takes a hexidecimal number as a list of its digits represented as 
+    strings. Returns the base 10 conversion of the hex as an integer.
+    """
     hex_dict = gen_hex_dict()
     hex_list.reverse()
     dec_sum = 0
     for i, h in enumerate(hex_list):
         dec_sum += hex_dict[h] * 16**i
     return dec_sum
+
+def yes_i_know_that_python_handles_hex(h_string):
+    """Just to prove that I know the right way to do this in Python."""
+    return int(h_string, 16)
 
 if __name__ == '__main__':
     try: 
