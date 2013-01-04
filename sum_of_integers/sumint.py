@@ -1,11 +1,20 @@
 #!/usr/bin/env python
 
 """
-    Sum of Integers Solution: v0.1
+    Sum of Integers Solution: v0.2
 
-    =================================
-    Copyright 2012, Jamie Thomas Duby
-    =================================
+    Prints the sum of integers in a file to stdout.
+
+    The path to a file is given, as an argument. The format required is one
+    integer per line.
+
+    Version History:
+        v0.2: Code refactoring and fixing documentation.
+
+
+    ======================================
+    Copyright 2012,2013  Jamie Thomas Duby
+    ======================================
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -23,25 +32,9 @@
 import sys
 
 if __name__ == '__main__':
-    exit_code = 0
-    try: 
-        infile = open(sys.argv[1], 'r')
+    with open(sys.argv[1], 'r') as infile:
         sum = 0
         for line in infile:
             sum += int(line.strip())
-        print(sum)
-    except IOError:
-        exit_code = "Unable to open file: " + sys.argv[1]
-    except IndexError:
-        exit_code = "No arguments given."
-    except ValueError:
-        exit_code = "Incorrect file format."
-    except:
-        exit_code = "Unspecified error."
-    finally:
-        try:
-            infile.close()
-        except NameError:
-            pass            # Look up printing to stderr, then do something
-                            # better here
-    sys.exit(exit_code)
+    print sum
+    sys.exit(0)

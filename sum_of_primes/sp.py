@@ -1,17 +1,22 @@
 #!/usr/bin/env python
 
 """
-    Sum of Primes Solution: v0.3
+    Sum of Primes Solution: v0.4
    
+    Finds the sum of primes between 2 and 1000. The result is printed to 
+    stdout.
+
     Version History:
         0.1: Brute force.
         0.2: Implemented memoization and use of computed primes for testing
              the current number.
         0.3: Modularization of code. 
+        0.4: Fixed documentation
 
-    =================================
-    Copyright 2012, Jamie Thomas Duby
-    =================================
+
+    ======================================
+    Copyright 2012,2103  Jamie Thomas Duby
+    ======================================
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -43,6 +48,8 @@ def memo_prime(n, primes):
     return True
 
 def sum_n_primes(n):
+    """Sums the primes between 2 and n. Returns the integer sum to the caller.
+    """
     primes = []
     i = 2
     sum = 0

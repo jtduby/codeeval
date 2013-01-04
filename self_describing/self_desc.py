@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-    Self Describing Numbers Solution: v0.3
+    Self Describing Numbers Solution: v0.4
 
     Taken from: www.codeeval.com/open_challenges/40/
 
@@ -34,7 +34,7 @@
     Version History:
         0.2: Worked on documentation.
         0.3: Major code refactoring and documentation rewrites.
-
+        0.4: Whoops, no dictionary comprehensions in Python 2.6.
 
     ======================================
     Copyright 2012,2013  Jamie Thomas Duby
@@ -63,7 +63,7 @@ def gen_digit_dict(n):
     If a digit outside of the above range is encountered, None is returned to
     the caller instead of the dictionary.
     """
-    digit_dict = {i:0 for i in range(0, len(str(n)))}
+    digit_dict = gen_n_dict(n)
     for d in [int(c) for c in str(n)]:
         try:
             digit_dict[d] += 1
@@ -71,11 +71,28 @@ def gen_digit_dict(n):
             return None
     return digit_dict
 
+def gen_n_dict(n):
+    """Creates a doctionary where the keys range from 0 to the number of
+    digits in n. The definition for each key is 0.
+    """
+    n_dict = {} 
+    for i in range(0, len(str(n))):
+        n_dict[i] = 0
+    return n_dict
+
+def gen_target_dict(n):
+    """Generates the dictionary that should result if n is self describing.
+    """
+    target = {}
+    for i,c in enumerate(str(n)):
+        target[i] = int(c)
+    return target
+
 def self_describing(n):
     """Determines if the positive integer n is self describing. Returns 
     boolean True if it is self-describing. False if it is not. 
     """
-    target = {i:int(c) for i,c in enumerate(str(n))}
+    target = gen_target_dict(n)
     digit_dict = gen_digit_dict(n)
     return target == digit_dict
 
