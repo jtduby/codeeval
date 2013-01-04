@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-    Stack Implementation Solution: v0.3
+    Stack Implementation Solution: v0.4
       
     The specs say we'll be handling integers. There's no need to make this
     stack implementation that narrow. Making it more generic and robust. It
@@ -12,6 +12,9 @@
         v0.2: CodeEval passes a blank line in input. They imply that there
               will be no blanks and do not state how to handle them. Fixed.
         v0.3: Performed some code cleaning.
+        v0.4: Code and documentation refactoring.
+
+
     ========================================
     Copyright 2012, 2013,  Jamie Thomas Duby
     ========================================
@@ -37,6 +40,8 @@ class Stack(object):
     def __len__(self):
         return(len(self._stack))
     def push(self, obj):
+        """Pushes an object onto the stack.
+        """
         self._stack.append(obj)
     def pop(self):
         """Raises StackEmpty instead of returning None so that None can be
@@ -46,52 +51,52 @@ class Stack(object):
             return self._stack.pop()
         except IndexError:
             raise StackEmpty
+    def empty(self):
+        """Checks if the stack is empty.
+        """
+        if len(self._stack) == 0:
+            return True
+        else:
+            return False
 
 class StackEmpty(BaseException):
     """Inheriting from BaseException because this isn't really an error."""
     pass
         
 def parse_line(line):
+    """Takes a line of space seperated values, returns the values in a list.
+    """
     line_list = line.strip().split(' ')
     return line_list
 
 def batch_push(stack, items):
+    """Pushes the objects in the items list onto the stack."""
     for i in items:
         stack.push(i)
 
 def alt_print(stack):
+    """Pops the items from a stack and returns a string containing every other
+    item, starting with the first, seperated by spaces. e.g.
+
+        [1, 2, 3, 4] --> "1 3"
+    """
     alt = True
     out = ''
-    while True:
-        try:
-            n = stack.pop()
-            if alt:
-                out = out + n
-                alt = False
-            else:
-                out = out + ' '
-                alt = True
-        except StackEmpty:
-            print(out.strip())
-            break
+    while not stack.empty():
+        n = stack.pop()
+        if alt:
+            out = out + n
+            alt = False
+        else:
+            out = out + ' '
+            alt = True
+    print(out.strip())
  
 if __name__ == '__main__':
-    exit_code = 0
-    try: 
-        infile = open(sys.argv[1], 'r')
+    with open(sys.argv[1], 'r') as infile:
         s = Stack()
         for line in infile:
             items = parse_line(line)
             batch_push(s, items)
             alt_print(s)
-    except IOError:
-        exit_code = "Unable to open file: " + sys.argv[1]
-    except IndexError:
-        exit_code = "No arguments given."
-    finally:
-        try:
-            infile.close()
-        except NameError:
-            pass            # Look up printing to stderr, then do something
-                            # better here
-    sys.exit(exit_code)
+    sys.exit(0)

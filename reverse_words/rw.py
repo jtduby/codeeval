@@ -57,4 +57,4 @@ if __name__ == '__main__':
                 print(r)
     finally:
         infile.close()
-    sys.exit(1)
+    sys.exit(0)

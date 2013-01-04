@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-    Self Describing Numbers Solution: v0.2
+    Self Describing Numbers Solution: v0.3
 
     Taken from: www.codeeval.com/open_challenges/40/
 
@@ -31,6 +31,11 @@
             1
 
 
+    Version History:
+        0.2: Worked on documentation.
+        0.3: Major code refactoring and documentation rewrites.
+
+
     ======================================
     Copyright 2012,2013  Jamie Thomas Duby
     ======================================
@@ -50,45 +55,36 @@
 
 import sys
 
-def find_digits(n):
-    """Takes an integer n and returns a list of the digits of n. The digit
-    list is in order from highest order place to lowest. e.g.
+def gen_digit_dict(n):
+    """Creates a dictionary where the keys k range from 0 to the number of 
+    digits in n and point to the frequency at which k appears in the positive
+    integer n. 
 
-    1234 --> [1, 2, 3, 4]
-    936  --> [9, 3, 6]
-    
-    This was originally implemented without any casting, and found the digits
-    via modulus and arithmetic as it was assumed that casting would have higher
-    computational overhead. However, this assumption was tested, and found to
-    be false:
-        $ ./casting_vs_arith.py 10000000
-        Arithmetic took: 35.53 sec
-        Casting took: 35.47 sec
+    If a digit outside of the above range is encountered, None is returned to
+    the caller instead of the dictionary.
     """
-    return [int(c) for c in str(n)]
-
-def self_describing(digits):
-    target = {}
-    digit_dict = {}
-    for i, d in enumerate(digits):
-        if d > 0:
-            target[i] = d
-        if digit_dict.has_key(d):
+    digit_dict = {i:0 for i in range(0, len(str(n)))}
+    for d in [int(c) for c in str(n)]:
+        try:
             digit_dict[d] += 1
-        else:
-            digit_dict[d] = 1
-    if digit_dict == target:
-        return 1
-    else:
-        return 0
+        except:
+            return None
+    return digit_dict
+
+def self_describing(n):
+    """Determines if the positive integer n is self describing. Returns 
+    boolean True if it is self-describing. False if it is not. 
+    """
+    target = {i:int(c) for i,c in enumerate(str(n))}
+    digit_dict = gen_digit_dict(n)
+    return target == digit_dict
 
 if __name__ == '__main__':
-    try: 
-        infile = open(sys.argv[1], 'r')
+    with open(sys.argv[1], 'r') as infile:
         for line in infile:
             n = int(line.strip())
-            digits = find_digits(n)
-            print(self_describing(digits))
-    finally:
-        infile.close()
+            if self_describing(n):
+                print('1')
+            else:
+                print('0')
     sys.exit(0)

@@ -3,9 +3,34 @@
 """
     Set Intersection Solution: v0.1
 
-    =================================
-    Copyright 2012, Jamie Thomas Duby
-    =================================
+    Taken from: www.codeeval.com/open_challenges/30/
+
+    Description:
+
+        You are given two sorted list of numbers(ascending order). The lists 
+        themselves are comma delimited and the two lists are semicolon 
+        delimited. Print out the intersection of these two sets.
+
+    Input sample:
+
+        File containing two lists of ascending order sorted integers, comma 
+        delimited, one per line. e.g.
+
+            1,2,3,4;4,5,6
+            7,8,9;8,9,10,11,12
+
+    Output sample:
+
+        Print out the ascending order sorted intersection of the two lists, 
+        one per line. e.g.
+
+            4
+            8,9
+
+
+    ======================================
+    Copyright 2012,2013  Jamie Thomas Duby
+    ======================================
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -24,7 +49,6 @@ import sys
 import re
 
 if __name__ == '__main__':
-    exit_code = 0
     try: 
         infile = open(sys.argv[1], 'r')
         for line in infile:
@@ -38,14 +62,6 @@ if __name__ == '__main__':
             clist.sort()
             cstr = re.sub("[\[\] \']", '', str(clist)) 
             print(cstr)     
-    except IOError:
-        exit_code = "Unable to open file: " + sys.argv[1]
-    except IndexError:
-        exit_code = "No arguments given."
     finally:
-        try:
-            infile.close()
-        except NameError:
-            pass            # Look up printing to stderr, then do something
-                            # better here
-    sys.exit(exit_code)
+        infile.close()
+    sys.exit(0)

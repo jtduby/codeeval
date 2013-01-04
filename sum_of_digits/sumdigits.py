@@ -1,11 +1,38 @@
 #!/usr/bin/env python
 
 """
-    Sum of Digits Solution: v0.1
+    Sum of Digits Solution: v0.2
 
-    =================================
-    Copyright 2012, Jamie Thomas Duby
-    =================================
+    Taken from: www.codeeval.com/open_challenges/21/
+
+    Description:
+
+        Given a positive integer, find the sum of its constituent digits.
+
+    Input sample:
+
+        The first argument will be a text file containing positive integers,
+        one per line. e.g.
+
+            23
+            496
+  
+    Output sample:
+
+        Print to stdout, the sum of the numbers that make up the integer, one
+        per line. e.g.
+
+            5
+            19
+
+
+    Version History:
+        v0.2: Code refactoring and documentation fixing.
+
+
+    ======================================
+    Copyright 2012,2013  Jamie Thomas Duby
+    ======================================
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -23,33 +50,17 @@
 import sys
 
 def add_intstr(istr):
-    try:
-        sum = 0
-        for i in istr:
-            sum += int(i)
-    except Exception as e:
-        return e
+    """Takes a positive number as a string, returns the integer sum of its 
+    digits.
+    """
+    sum = 0
+    for i in istr:
+        sum += int(i)
     return sum
 
 if __name__ == '__main__':
-    exit_code = 0
-    try: 
-        infile = open(sys.argv[1], 'r')
+    with open(sys.argv[1], 'r') as infile:
         for line in infile:
             sum = add_intstr(line.strip())
             print sum
-    except IOError:
-        exit_code = "Unable to open file: " + sys.argv[1]
-    except IndexError:
-        exit_code = "No arguments given."
-    except ValueError:
-        exit_code = "Invalid input format."
-    except:
-        exit_code = "Unspecified error."
-    finally:
-        try:
-            infile.close()
-        except NameError:
-            pass            # Look up printing to stderr, then do something
-                            # better here
-    sys.exit(exit_code)
+    sys.exit(0)
