@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-    Fibonacci Solution: v0.5
+    Fibonacci Solution: v0.6
 
     Takes, as an argument, the path to a file with a positive integer n on
     each line. Prints the nth number in the Fibonacci sequence to stdout. 
@@ -13,6 +13,7 @@
               --Changed memoization storage from list to dict for lower-cost
                 lookups.
         0.4/0.5:  More code cleaning and some documentation fixing.
+        0.6: Added to Fib documentation.
     
     =================================
     Copyright 2012, Jamie Thomas Duby
@@ -34,6 +35,14 @@
 import sys
 
 class Fib(object):
+    """Computes a Fibonacci sequence. Also stores all values of previously 
+    computed values
+    
+    Public methods defined here:
+
+        fib(n)
+            Returns the nth integer in the Fibonacci sequence.
+    """
     def __init__(self):
         self._fibs = {0:0, 1:1}      #Seeding the fib sequence.
     def fib(self, n):

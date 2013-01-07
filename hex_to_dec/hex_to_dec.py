@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-    Hex to Decimal Solution: v0.4
+    Hex to Decimal Solution: v0.5
 
     Takes, as an argument, the path to a file formatted as a hexidecimal
     number on each line. All hex numbers are to be formatted as just the
@@ -17,7 +17,7 @@
 
     Version History:
         0.2: CodeEval breaks spec and passes upper case characters. 
-        0.3/0.4: Cleaning code, refactoring, fixing documentation.
+        0.3 - 0.5: Cleaning code, refactoring, fixing documentation.
 
 
     ======================================
@@ -38,15 +38,6 @@
 """
 
 import sys
-
-def str_to_list(in_str):
-    """Takes a string, returns a list where each character in the string is
-    an item in the list. All chars are converted to lower case.
-    """
-    s_list = []
-    for c in in_str:
-        s_list.append(c.lower())
-    return s_list
 
 def gen_hex_dict():
     """Returns a dictionary where the keys are string equivalents of 
@@ -79,7 +70,8 @@ if __name__ == '__main__':
         infile = open(sys.argv[1], 'r')
         for line in infile:
             hex_str = line.strip()
-            hex_list = str_to_list(hex_str)
+            #hex_list = str_to_list(hex_str)
+            hex_list = [c.lower() for c in hex_str]
             dec_n = hex_list_to_dec(hex_list)
             print(dec_n)
     finally:

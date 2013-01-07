@@ -51,7 +51,9 @@
 import sys
 
 def compare(n, p1, p2):
-    """Takes integers n, p1, p2. If the bit of n at positions p1 and p2 are
+    """Compares two bits in an integer.
+
+    Takes integers n, p1, p2. If the bit of n at positions p1 and p2 are
     the same, true is returned to the caller. Otherwise returns false. Bit
     positions start at 1 and go from low order to high. For example:
         n = 5, p1 = 1, p2 = 2

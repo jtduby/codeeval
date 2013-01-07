@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-    Happy Numbers Solution: v0.3
+    Happy Numbers Solution: v0.4
 
     From http://codeeval.com/open_challenges/39/:
     "A happy number is defined by the following process. Starting with any 
@@ -19,7 +19,7 @@
         0.1: Completed
         0.2: Won't work if two or more places share the same number, i.e.,
              12234. Fixed.
-        0.3: Refactoring, code cleaning, documentation fixing.
+        0.3/0.4: Refactoring, code cleaning, documentation fixing.
 
 
     =================================
@@ -60,20 +60,17 @@ def find_digits(n):
         place = place * 10
     return digits
 
-def sum_squares(digits):
-    """Takes a list of integers. The sum of the squares of the numbers is 
-    returned to the caller.
-    """
+def sum_squares(numbers):
+    """Sums the squares of an iterable collection of numbers."""
     sum = 0
-    for i in digits:
-        square = i**2
-        sum = sum + square
+    for i in numbers:
+        sum += i**2
     return sum
 
 def happy(n):
-    """If the n is a happy number, 1 is returned to the caller. Else 0 is
-    returned. An unhappy number is determined by a cycle in the sequence
-    returned by the summing of sums of digits of n. 
+    """Tests if n is a happy number.
+    
+    Takes a positive integer n. Returns a bool.
     """
     candidates = set()
     while not (n == 1):
@@ -81,15 +78,18 @@ def happy(n):
             candidates.add(n)
             digits = find_digits(n)
             n = sum_squares(digits)
-        else: return 0
-    return 1
+        else: return False
+    return True
             
 if __name__ == '__main__':
     try: 
         infile = open(sys.argv[1], 'r')
         for line in infile:
             n = int(line.strip())
-            print(happy(n))
+            if happy(n):
+                print '1'
+            else:
+                print '0'
     finally:
         infile.close()
     sys.exit(0)
