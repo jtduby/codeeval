@@ -31,6 +31,7 @@
 import sys
 import re
 import itertools
+import math
 
 def consonants(s):
     """Takes a string s, returns the integer count of consonants in the
@@ -63,7 +64,7 @@ def even_score(name, item):
 def find_factors(n):
     """Takes and integer n, returns the set of all factors of n, except 1."""
     f = set([n])
-    for i in range(2, n):
+    for i in range(2, int(math.sqrt(n)+1)):
         if (n%i == 0):
             f.add(i)
     return f
